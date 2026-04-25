@@ -1,0 +1,30 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environments
+.venv/
+.uv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (no subir datos al repo)
+data/*
+!data/.gitkeep
+
+# Secrets
+.env
+credentials.json
+
+# Build output
+site/
+dist/
+build/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
