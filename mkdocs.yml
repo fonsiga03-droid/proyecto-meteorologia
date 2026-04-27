@@ -1,0 +1,29 @@
+site_name: Radiación Solar y Energía Fotovoltaica
+site_author: fonsi
+repo_url: https://github.com/fonsiga03-droid/proyecto-meteorologia
+repo_name: proyecto-meteorologia
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: orange
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: orange
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - content.code.copy
+    - navigation.indexes
+    - navigation.top
+
+nav:
+  - Inicio: index.md
+  - Análisis: analysis.md
