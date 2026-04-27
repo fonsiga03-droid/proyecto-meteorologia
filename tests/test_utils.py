@@ -1,5 +1,10 @@
 import pytest
-from weather.utils import celsius_to_fahrenheit, calculate_poa_irradiance, pv_power_output
+
+from weather.utils import (
+    calculate_poa_irradiance,
+    celsius_to_fahrenheit,
+    pv_power_output,
+)
 
 
 class TestCelsiusToFahrenheit:
