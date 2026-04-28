@@ -1,6 +1,5 @@
 """Download solar radiation data from NASA POWER for Spanish locations."""
 
-import json
 import time
 from pathlib import Path
 
