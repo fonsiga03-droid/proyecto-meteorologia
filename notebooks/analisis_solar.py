@@ -72,7 +72,9 @@ ax.set_title("Radiación Global Horizontal media mensual (NASA POWER 2022–2023
 ax.set_xlabel("Mes")
 ax.set_ylabel("GHI (W/m²)")
 ax.set_xticks(range(1, 13))
-ax.set_xticklabels(["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"])
+ax.set_xticklabels(
+    ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+)
 ax.legend(fontsize=8)
 ax.grid(alpha=0.3)
 fig.tight_layout()
@@ -113,10 +115,13 @@ print("Generando figura 3: producción fotovoltaica anual...")
 anual = df.groupby("location")["P_kwh"].sum().sort_values(ascending=False) / 2
 
 fig, ax = plt.subplots(figsize=(9, 5))
-bars = ax.bar(anual.index, anual.values,
-              color=[COLORS[c] for c in anual.index], edgecolor="white")
+bars = ax.bar(
+    anual.index, anual.values, color=[COLORS[c] for c in anual.index], edgecolor="white"
+)
 ax.bar_label(bars, fmt="%.0f kWh", padding=3, fontsize=9)
-ax.set_title("Producción fotovoltaica anual estimada por ciudad\n(panel 340W, inclinación 30°, orientación sur)")
+ax.set_title(
+    "Producción fotovoltaica anual estimada por ciudad\n(panel 340W, inclinación 30°, orientación sur)"
+)
 ax.set_ylabel("Energía anual (kWh)")
 ax.set_ylim(0, anual.max() * 1.15)
 ax.grid(axis="y", alpha=0.3)
@@ -135,10 +140,20 @@ cities = sorted(df["location"].unique())
 width = 0.35
 
 for i, year in enumerate([2022, 2023]):
-    vals = [interanual[(interanual["location"] == c) & (interanual["year"] == year)]["GHI"].values[0]
-            for c in cities]
-    ax.bar(x + i * width, vals, width, label=str(year),
-           color=["#457b9d", "#e63946"][i], alpha=0.85)
+    vals = [
+        interanual[(interanual["location"] == c) & (interanual["year"] == year)][
+            "GHI"
+        ].values[0]
+        for c in cities
+    ]
+    ax.bar(
+        x + i * width,
+        vals,
+        width,
+        label=str(year),
+        color=["#457b9d", "#e63946"][i],
+        alpha=0.85,
+    )
 
 ax.set_xticks(x + width / 2)
 ax.set_xticklabels(cities, rotation=15)
@@ -153,23 +168,38 @@ print("  Guardada: variabilidad_interanual.png")
 
 # ── 7. Mapa de recurso solar ──────────────────────────────────────────────────
 print("Generando figura 5: mapa de recurso solar...")
-resumen = df.groupby("location").agg(
-    GHI_mean=("GHI", "mean"),
-    lat=("lat", "first"),
-    lon=("lon", "first"),
-    P_anual=("P_kwh", lambda x: x.sum() / 2),
-).reset_index()
+resumen = (
+    df.groupby("location")
+    .agg(
+        GHI_mean=("GHI", "mean"),
+        lat=("lat", "first"),
+        lon=("lon", "first"),
+        P_anual=("P_kwh", lambda x: x.sum() / 2),
+    )
+    .reset_index()
+)
 
 fig, ax = plt.subplots(figsize=(8, 7))
-sc = ax.scatter(resumen["lon"], resumen["lat"],
-                c=resumen["GHI_mean"], cmap="YlOrRd",
-                s=resumen["P_anual"] / 2, edgecolors="black", linewidths=0.5,
-                vmin=140, vmax=220)
+sc = ax.scatter(
+    resumen["lon"],
+    resumen["lat"],
+    c=resumen["GHI_mean"],
+    cmap="YlOrRd",
+    s=resumen["P_anual"] / 2,
+    edgecolors="black",
+    linewidths=0.5,
+    vmin=140,
+    vmax=220,
+)
 
 for _, row in resumen.iterrows():
-    ax.annotate(f"{row['location']}\n{row['GHI_mean']:.0f} W/m²",
-                (row["lon"], row["lat"]),
-                textcoords="offset points", xytext=(8, 4), fontsize=8)
+    ax.annotate(
+        f"{row['location']}\n{row['GHI_mean']:.0f} W/m²",
+        (row["lon"], row["lat"]),
+        textcoords="offset points",
+        xytext=(8, 4),
+        fontsize=8,
+    )
 
 plt.colorbar(sc, ax=ax, label="GHI media (W/m²)")
 ax.set_xlabel("Longitud")
@@ -183,5 +213,9 @@ print("  Guardada: mapa_recurso_solar.png")
 
 # ── 8. Resumen estadístico ────────────────────────────────────────────────────
 print("\n=== RESUMEN FOTOVOLTAICO ===")
-print(resumen[["location", "GHI_mean", "P_anual"]].sort_values("P_anual", ascending=False).to_string(index=False))
+print(
+    resumen[["location", "GHI_mean", "P_anual"]]
+    .sort_values("P_anual", ascending=False)
+    .to_string(index=False)
+)
 print("\nAnálisis completado. Figuras en docs/figures/")
