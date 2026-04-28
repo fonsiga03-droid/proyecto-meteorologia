@@ -21,7 +21,7 @@ para evaluar el potencial fotovoltaico en diferentes localizaciones españolas.
 ## Instalación
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/proyecto-meteorologia.git
+git clone https://github.com/fonsiga03-droid/proyecto-meteorologia.git
 cd proyecto-meteorologia
 uv sync --group dev
 ```
