@@ -17,6 +17,8 @@ dependencies = [
     # "dask>=2024.1",
     # "meteostat>=1.6",
     "pyarrow>=24.0.0",
+    "streamlit>=1.56.0",
+    "plotly>=6.7.0",
 ]
 
 [dependency-groups]

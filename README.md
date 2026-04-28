@@ -103,5 +103,5 @@ proyecto-meteorologia/ ├── .github/workflows/ # CI/CD: tests, docs, releas
 
 ## Autor
 
-**fonsi** — Grado en Matemáticas, UNIE Universidad
+**Alfonso González Avanzini** — Grado en Matemáticas, UNIE Universidad
 

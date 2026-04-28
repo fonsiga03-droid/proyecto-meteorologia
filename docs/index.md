@@ -28,4 +28,4 @@ uv sync --group dev
 
 ## Autor
 
-fonsi — Grado en Matemáticas, UNIE Universidad, 2025–2026
+Alfonso González Avanzini — Grado en Matemáticas, UNIE Universidad, 2025–2026
